@@ -197,19 +197,31 @@ app.get("/api/downloader/igdl", async (req, res) => {
     if (!url) return res.status(400).json({ error: "Url is required." });
 
     try {
-        const response = await axios.get(`https://api.siputzx.my.id/api/d/igdl?url=${url}`);
+        // Mengambil data dari API eksternal
+        const response = await axios.get(`https://api.vreden.web.id/api/igdownload?url=${url}`);
         const data = response.data;
 
-        res.json({
+        if (!data.status) {
+            return res.status(500).json({ error: "Failed to fetch data from Instagram." });
+        }
+
+        // Format data respons yang diterima
+        const result = {
             status: true,
             creator: "Bagus Bahril",
             result: {
-                Judul: data.data.title || "Instagram Video",
-                thumbnail: data.data.thumbnailUrl || null,
-                durasi: data.data.duration || "Unknown",
-                UrlDownload: data.data.video
+                profile: data.result.response.profile,
+                caption: data.result.response.caption,
+                statistics: data.result.response.statistics,
+                video_url: data.result.response.data[0].url,
+                thumbnail: data.result.response.data[0].thumb,
+                video_height: data.result.response.data[0].height,
+                video_width: data.result.response.data[0].width
             }
-        });
+        };
+
+        // Mengirim data sebagai respons JSON
+        res.json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred while fetching data." });
