@@ -192,36 +192,36 @@ app.get("/api/downloader/ytmp4", async (req, res) => {
     }
 });
 
+
+
 app.get("/api/downloader/igdl", async (req, res) => {
     const { url } = req.query;
     if (!url) return res.status(400).json({ error: "Url is required." });
 
     try {
-        // Mengambil data dari API eksternal
+        // Panggil API baru
         const response = await axios.get(`https://api.vreden.web.id/api/igdownload?url=${url}`);
         const data = response.data;
 
-        if (!data.status) {
-            return res.status(500).json({ error: "Failed to fetch data from Instagram." });
+        // Cek apakah respons dari API valid
+        if (!data.status || !data.result.response.status) {
+            return res.status(500).json({ error: "Failed to fetch data from API." });
         }
 
-        // Format data respons yang diterima
-        const result = {
+        // Ambil data dari respons API
+        const result = data.result.response;
+        const videoData = result.data[0]; // Ambil video pertama
+
+        res.json({
             status: true,
             creator: "Bagus Bahril",
             result: {
-                profile: data.result.response.profile,
-                caption: data.result.response.caption,
-                statistics: data.result.response.statistics,
-                video_url: data.result.response.data[0].url,
-                thumbnail: data.result.response.data[0].thumb,
-                video_height: data.result.response.data[0].height,
-                video_width: data.result.response.data[0].width
+                Judul: "Instagram Video",
+                thumbnail: videoData.thumb,
+                durasi: "Unknown",
+                UrlDownload: videoData.url
             }
-        };
-
-        // Mengirim data sebagai respons JSON
-        res.json(result);
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred while fetching data." });
