@@ -28,17 +28,42 @@
             z-index: 0;
         }
 
-        /* Konten utama supaya tidak tertutup */
-        header, main, footer {
-            position: relative;
-            z-index: 1;
+        /* Kotak putih lebih transparan */
+        .box {
+            background: rgba(255, 255, 255, 0.8); /* Warna putih dengan transparansi */
+            backdrop-filter: blur(8px); /* Efek blur untuk tampilan lebih halus */
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animasi teks seperti mesin tik */
+        .typing {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e40af;
+            overflow: hidden;
+            border-right: 2px solid #1e40af;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from { border-color: #1e40af; }
+            to { border-color: transparent; }
         }
     </style>
 </head>
 <body class="bg-blue-50 text-gray-800">
     <!-- Background Video -->
     <video id="bg-video" autoplay muted loop>
-        <source src="https://files.catbox.moe/8wqvbd.mp4" type="video/mp4">
+        <source src="https://files.catbox.moe/vhiw4m.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -56,53 +81,23 @@
     <!-- Main Content -->
     <main class="container mx-auto mt-6 p-4">
         <!-- Intro Section -->
-        <div class="bg-blue-100 p-6 rounded shadow-lg">
-            <p class="text-lg text-center text-blue-900 font-medium">Created by BagusXyz</p>
+        <div class="box text-center">
+            <span class="typing">Created by BagusXyz</span>
         </div>
 
         <section class="mt-8">
             <h2 class="text-2xl font-semibold text-blue-700 mb-4">Download Endpoints</h2>
-            <div class="bg-white p-6 rounded shadow-lg">
+            <div class="box">
                 <ul>
-                    <!-- TikTok Download -->
                     <li class="flex justify-between items-center py-3 border-b">
                         <span class="text-blue-600 font-semibold">GET</span>
                         <span class="text-gray-700">TikTok Download</span>
-                        <a href="https://api.rafaelxputra.my.id/api/downloader/tiktok?url=https://vt.tiktok.com/ZSjnf5voB/" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">
-                            Try
-                        </a>
+                        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
                     </li>
-                    <!-- YouTube MP3 Download -->
                     <li class="flex justify-between items-center py-3 border-b">
                         <span class="text-blue-600 font-semibold">GET</span>
                         <span class="text-gray-700">YTMP3 Download</span>
-                        <a href="https://api.rafaelxputra.my.id/api/downloader/ytmp3?url=https://youtu.be/AURkGj0jEx4?si=f0USJg7M4c39r1t2" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">
-                            Try
-                        </a>
-                    </li>
-                    <!-- YouTube MP4 Download -->
-                    <li class="flex justify-between items-center py-3 border-b">
-                        <span class="text-blue-600 font-semibold">GET</span>
-                        <span class="text-gray-700">YTMP4 Download</span>
-                        <a href="https://api.rafaelxputra.my.id/api/downloader/ytmp4?url=https://youtu.be/AURkGj0jEx4?si=f0USJg7M4c39r1t2" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">
-                            Try
-                        </a>
-                    </li>
-                    <!-- Spotify Search -->
-                    <li class="flex justify-between items-center py-3 border-b">
-                        <span class="text-blue-600 font-semibold">GET</span>
-                        <span class="text-gray-700">Spotify Search</span>
-                        <a href="https://api.rafaelxputra.my.id/api/downloader/spotifys?judul=hujan" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">
-                            Try
-                        </a>
-                    </li>
-                    <!-- Spotify Download -->
-                    <li class="flex justify-between items-center py-3 border-b">
-                        <span class="text-blue-600 font-semibold">GET</span>
-                        <span class="text-gray-700">Spotify Download</span>
-                        <a href="https://api.rafaelxputra.my.id/api/downloader/spotify?url=https://open.spotify.com/track/514rhnksEwHUh6LxXsQ4Y9?si=jzow0lr6Qay3yeMJcrEn8A&context=spotify%3Aplaylist%3A37i9dQZF1DX5Ejj0EkURtP" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">
-                            Try
-                        </a>
+                        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
                     </li>
                 </ul>
             </div>
@@ -116,4 +111,4 @@
         </div>
     </footer>
 </body>
-                </html>
+                            </html>
