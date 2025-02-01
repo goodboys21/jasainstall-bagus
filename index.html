@@ -37,26 +37,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Animasi teks seperti mesin tik */
-        .typing {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #1e40af;
-            overflow: hidden;
-            border-right: 2px solid #1e40af;
-            white-space: nowrap;
-            width: 0;
-            animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        /* Animasi kursor berkedip */
+        .typing::after {
+            content: '|';
+            animation: blink 0.7s infinite;
         }
 
         @keyframes blink {
-            from { border-color: #1e40af; }
-            to { border-color: transparent; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -82,7 +70,7 @@
     <main class="container mx-auto mt-6 p-4">
         <!-- Intro Section -->
         <div class="box text-center">
-            <span class="typing">Created by BagusXyz</span>
+            <span class="typing" id="typing-text"></span>
         </div>
 
         <section class="mt-8">
@@ -110,5 +98,28 @@
             <p>&copy; 2024 Rafael API. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- JavaScript untuk efek ketik -->
+    <script>
+        const text = "Created by BagusXyz";
+        const typingElement = document.getElementById("typing-text");
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                typingElement.innerHTML = text.substring(0, index + 1);
+                index++;
+                setTimeout(typeEffect, 100);
+            } else {
+                setTimeout(() => {
+                    index = 0;
+                    typingElement.innerHTML = "";
+                    typeEffect();
+                }, 2000);
+            }
+        }
+
+        typeEffect();
+    </script>
 </body>
-                            </html>
+</html>
