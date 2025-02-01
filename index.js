@@ -252,28 +252,58 @@ app.get("/api/downloader/facebook", async (req, res) => {
     }
 });
 
-app.get("/api/downloader/capcut", async (req, res) => {
-    const { url } = req.query;
-    if (!url) return res.status(400).json({ error: "Url is required." });
 
+async function capcutdl(url) {
     try {
-        const response = await axios.get(`https://api.siputzx.my.id/api/d/capcut?url=${url}`);
-        const data = response.data;
+        const response = await axios.get(url);
+        const html = response.data;
+        const $ = cheerio.load(html);
+        const videoElement = $('video.player-o3g3Ag');
+        const videoSrc = videoElement.attr('src');
+        const posterSrc = videoElement.attr('poster');
+        const title = $('h1.template-title').text().trim();
+        const actionsDetail = $('p.actions-detail').text().trim();
+        const [date, uses, likes] = actionsDetail.split(',').map(item => item.trim());
+        const authorAvatar = $('span.lv-avatar-image img').attr('src');
+        const authorName = $('span.lv-avatar-image img').attr('alt');
 
-        res.json({
-            status: true,
-            creator: "Bagus Bahril",
-            result: {
-                Judul: data.data.title || "CapCut Video",
-                thumbnail: data.data.thumbnailUrl || null,
-                durasi: data.data.duration || "Unknown",
-                UrlDownload: data.data.video
-            }
-        });
+        if (!videoSrc || !posterSrc || !title || !date || !uses || !likes || !authorAvatar || !authorName) {
+            throw new Error('Beberapa elemen penting tidak ditemukan di halaman.');
+        }
+
+        return {            
+            title: title,
+            date: date,
+            pengguna: uses,
+            likes: likes,
+            author: {
+                name: authorName,
+                avatarUrl: authorAvatar
+            },
+            videoUrl: videoSrc,
+            posterUrl: posterSrc
+        };
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
+        console.error('Error fetching video details:', error.message);
+        return null;
     }
+}
+
+app.get("/api/downloader/capcut", async (req, res) => {
+  const { url } = req.query;
+  if (!url) return res.status(400).json({ error: "URL is required." });
+
+  try {
+    const data = await capcutdl(url);
+    if (!data) return res.status(404).json({ error: "No data found." });
+    res.json({ status: true, creator: "Bagus Bahril", result: data });
+  } catch (e) {
+    res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
 });
 
 app.get("/api/downloader/mediafire", async (req, res) => {
