@@ -71,7 +71,7 @@
     <header class="header text-white shadow p-4 flex justify-between items-center">
         <h1 class="text-3xl font-bold typing-header" id="typing-header"></h1>
         <!-- Ganti ikon serigala dengan logo WhatsApp -->
-        <a href="https://wa.me/6281234567890" target="_blank">
+        <a href="https://wa.me/6281936845010" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="32">
         </a>
     </header>
@@ -87,18 +87,23 @@
         <div class="box mt-8">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-semibold text-blue-700">Orkut Api</h2>
-                <span class="text-green-600 text-sm font-semibold">4 endpoints</span>
+                <span class="text-green-600 text-sm font-semibold">3 endpoints</span>
             </div>
             <ul>
                 <li class="flex justify-between items-center py-3 border-b">
                     <span class="text-blue-600 font-semibold">GET</span>
-                    <span class="text-gray-700">TikTok Download</span>
-                    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
+                    <span class="text-gray-700">Create Payment</span>
+                    <a href="https://api.bagusstr.my.id/orkut/createpayment?apikey=bagus&amount=&codeqr=" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
                 </li>
                 <li class="flex justify-between items-center py-3 border-b">
                     <span class="text-blue-600 font-semibold">GET</span>
-                    <span class="text-gray-700">YTMP3 Download</span>
-                    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
+                    <span class="text-gray-700">Cek Status</span>
+                    <a href="https://api.bagusstr.my.id/orkut/cekstatus?apikey=bagus&merchant=&token=" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
+                </li>
+                <li class="flex justify-between items-center py-3 border-b">
+                    <span class="text-blue-600 font-semibold">GET</span>
+                    <span class="text-gray-700">Cek Saldo</span>
+                    <a href="https://api.bagusstr.my.id/orkut/ceksaldo?apikey=bagus&merchant=&pin=&password=" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition">Try</a>
                 </li>
             </ul>
         </div>
@@ -107,7 +112,7 @@
     <!-- JavaScript untuk efek ketik -->
     <script>
         // Efek ketik pada "Created by BagusXyz"
-        const text = "Created by BagusXyz";
+        const text = "Welcome To Bagus Rest Api";
         const typingElement = document.getElementById("typing-text");
         let index = 0;
 
