@@ -24,13 +24,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Gelap sedikit agar teks lebih jelas */
+            background: rgba(0, 0, 0, 0.3);
             z-index: 0;
         }
 
         /* Kotak header warna biru pudar */
         .header {
-            background: rgba(52, 152, 219, 0.8); /* Biru pudar */
+            background: rgba(52, 152, 219, 0.8);
             backdrop-filter: blur(10px);
             padding: 1rem;
             border-radius: 8px;
@@ -69,10 +69,10 @@
 
     <!-- Header -->
     <header class="header text-white shadow p-4 flex justify-between items-center">
-        <h1 class="text-3xl font-bold">Bagus Xyz</h1>
+        <h1 class="text-3xl font-bold typing-header" id="typing-header"></h1>
         <!-- Ganti ikon serigala dengan logo WhatsApp -->
         <a href="https://wa.me/6281234567890" target="_blank">
-            <img src="https://files.catbox.moe/vhiw4m.mp4" alt="Cs Service" width="32">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="32">
         </a>
     </header>
 
@@ -86,8 +86,8 @@
         <!-- Download Endpoints Section -->
         <div class="box mt-8">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-semibold text-blue-700">Downloader</h2>
-                <span class="text-green-600 text-sm font-semibold">2 endpoints</span>
+                <h2 class="text-2xl font-semibold text-blue-700">Download Endpoints</h2>
+                <span class="text-green-600 text-sm font-semibold">(2 endpoints)</span>
             </div>
             <ul>
                 <li class="flex justify-between items-center py-3 border-b">
@@ -104,10 +104,9 @@
         </div>
     </main>
 
-    <!-- HAPUS FOOTER -->
-
     <!-- JavaScript untuk efek ketik -->
     <script>
+        // Efek ketik pada "Created by BagusXyz"
         const text = "Created by BagusXyz";
         const typingElement = document.getElementById("typing-text");
         let index = 0;
@@ -127,6 +126,29 @@
         }
 
         typeEffect();
+
+        // Efek ketik dan hapus pada "Bagus Xyz"
+        const headerText = "Bagus Xyz";
+        const typingHeader = document.getElementById("typing-header");
+        let headerIndex = 0;
+        let isDeleting = false;
+
+        function typeHeader() {
+            if (!isDeleting && headerIndex < headerText.length) {
+                typingHeader.innerHTML = headerText.substring(0, headerIndex + 1);
+                headerIndex++;
+                setTimeout(typeHeader, 150);
+            } else if (isDeleting && headerIndex > 0) {
+                typingHeader.innerHTML = headerText.substring(0, headerIndex - 1);
+                headerIndex--;
+                setTimeout(typeHeader, 100);
+            } else {
+                isDeleting = !isDeleting;
+                setTimeout(typeHeader, 1500);
+            }
+        }
+
+        typeHeader();
     </script>
 </body>
 </html>
