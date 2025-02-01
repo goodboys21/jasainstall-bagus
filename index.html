@@ -28,10 +28,19 @@
             z-index: 0;
         }
 
-        /* Kotak putih lebih transparan */
+        /* Kotak header warna biru pudar */
+        .header {
+            background: rgba(52, 152, 219, 0.8); /* Biru pudar */
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Kotak putih transparan */
         .box {
-            background: rgba(255, 255, 255, 0.8); /* Warna putih dengan transparansi */
-            backdrop-filter: blur(8px); /* Efek blur untuk tampilan lebih halus */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -59,11 +68,12 @@
     <div class="overlay"></div>
 
     <!-- Header -->
-    <header class="bg-blue-600 text-white shadow p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Bagus Xyz</h1>
-            <button class="text-white text-lg">🐺</button>
-        </div>
+    <header class="header text-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Bagus Xyz</h1>
+        <!-- Ganti ikon serigala dengan logo WhatsApp -->
+        <a href="https://wa.me/6281234567890" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="32">
+        </a>
     </header>
 
     <!-- Main Content -->
@@ -92,12 +102,7 @@
         </section>        
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-blue-600 text-white p-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 Rafael API. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- HAPUS FOOTER -->
 
     <!-- JavaScript untuk efek ketik -->
     <script>
