@@ -29,6 +29,81 @@ app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+
+/*==========================
+     (Fitur Ai Gpt)
+============================*/
+
+
+app.get("/api/ai/gpt3", async (req, res) => {
+    const { prompt } = req.query;
+    if (!prompt) return res.status(400).json({ error: "Prompt is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/ai/gpt3?prompt=${encodeURIComponent(prompt)}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                response: data.data.response || "No response from AI"
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data from AI." });
+    }
+});
+
+
+app.get("/api/ai/luminai", async (req, res) => {
+    const { prompt } = req.query;
+    if (!prompt) return res.status(400).json({ error: "Prompt is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/ai/luminai?prompt=${encodeURIComponent(prompt)}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                response: data.data.response || "No response from LuminAI"
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data from LuminAI." });
+    }
+});
+
+app.get("/api/ai/yanzgpt", async (req, res) => {
+    const { prompt } = req.query;
+    if (!prompt) return res.status(400).json({ error: "Prompt is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/ai/yanzgpt?prompt=${encodeURIComponent(prompt)}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                response: data.data.response || "No response from YanzGPT"
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data from YanzGPT." });
+    }
+});
+
+/*==========================
+     (Fitur Downloader)
+============================*/
+
+
 app.get("/api/downloader/tiktok", async (req, res) => {
   const { url } = req.query;
   if (!url) return res.status(400).json({ error: "URL is required." });
@@ -37,25 +112,9 @@ app.get("/api/downloader/tiktok", async (req, res) => {
     const { tiktokdl } = require("tiktokdl");
     const data = await tiktokdl(url);
     if (!data) return res.status(404).json({ error: "No data found." });
-    res.json({ status: true, creator: "Rafael", result: data });
+    res.json({ status: true, creator: "Bagus Bahril", result: data });
   } catch (e) {
     res.status(500).json({ error: "Internal server error." });
-  }
-});
-
-
-
-app.get("/api/tools/translate", async (req, res) => {
-  const { text } = req.query;
-  if (!text) return res.status(400).json({ error: "Text is required." });
-
-  try {
-    const response = await axios.get(`https://api.siputzx.my.id/api/tools/translate`, {
-      params: { text: text, source: "auto", target: "id" }
-    });
-    res.json({ status: true, creator: "Rafael", result: response.data.translatedText });
-  } catch {
-    res.status(500).json({ error: "An error occurred while processing the translation." });
   }
 });
 
@@ -71,7 +130,7 @@ app.get("/api/downloader/spotify", async (req, res) => {
         }
         res.json({
             status: true,
-            creator: "Rafael",
+            creator: "Bagus Bahril",
             result: {
                 artis: data.metadata.artist,
                 judul: data.metadata.name,
@@ -90,12 +149,12 @@ app.get("/api/downloader/ytmp3", async (req, res) => {
     if (!url) return res.status(400).json({ error: "Url is required." });
 
     try {
-        const response = await axios.get(`https://api.siputzx.my.id/api/d/youtube?q=${url}`);
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/ytmp3?url=${url}`);
         const data = response.data;
 
         res.json({
             status: true,
-            creator: "Rafael",
+            creator: "Bagus Bahril",
             result: {
                 Judul: data.data.title,
                 thumbnail: data.data.thumbnailUrl,
@@ -114,12 +173,12 @@ app.get("/api/downloader/ytmp4", async (req, res) => {
     if (!url) return res.status(400).json({ error: "Url is required." });
 
     try {
-        const response = await axios.get(`https://api.siputzx.my.id/api/d/youtube?q=${url}`);
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
         const data = response.data;
 
         res.json({
             status: true,
-            creator: "Rafael",
+            creator: "Bagus Bahril",
             result: {
                 Judul: data.data.title,
                 thumbnail: data.data.thumbnailUrl,
@@ -133,7 +192,125 @@ app.get("/api/downloader/ytmp4", async (req, res) => {
     }
 });
 
+app.get("/api/downloader/igdl", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Url is required." });
 
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/igdl?url=${url}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                Judul: data.data.title || "Instagram Video",
+                thumbnail: data.data.thumbnailUrl || null,
+                durasi: data.data.duration || "Unknown",
+                UrlDownload: data.data.video
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+});
+
+app.get("/api/downloader/facebook", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Url is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/facebook?url=${url}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                Judul: data.data.title || "Facebook Video",
+                thumbnail: data.data.thumbnailUrl || null,
+                durasi: data.data.duration || "Unknown",
+                UrlDownload: data.data.video
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+});
+
+app.get("/api/downloader/capcut", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Url is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/capcut?url=${url}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                Judul: data.data.title || "CapCut Video",
+                thumbnail: data.data.thumbnailUrl || null,
+                durasi: data.data.duration || "Unknown",
+                UrlDownload: data.data.video
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+});
+
+app.get("/api/downloader/mediafire", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Url is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/mediafire?url=${url}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                NamaFile: data.data.filename || "Unknown File",
+                ukuran: data.data.filesize || "Unknown Size",
+                tipe: data.data.filetype || "Unknown Type",
+                UrlDownload: data.data.file
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+});
+
+app.get("/api/downloader/gdrive", async (req, res) => {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Url is required." });
+
+    try {
+        const response = await axios.get(`https://api.siputzx.my.id/api/d/gdrive?url=${url}`);
+        const data = response.data;
+
+        res.json({
+            status: true,
+            creator: "Bagus Bahril",
+            result: {
+                NamaFile: data.data.filename || "Unknown File",
+                ukuran: data.data.filesize || "Unknown Size",
+                tipe: data.data.filetype || "Unknown Type",
+                UrlDownload: data.data.file
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+});
 
 app.get("/api/downloader/spotifys", async (req, res) => {
     try {
@@ -148,7 +325,7 @@ app.get("/api/downloader/spotifys", async (req, res) => {
         }
         res.json({
             status: true,
-            creator: "Rafael",
+            creator: "Bagus Bahril",
             result: {
                 judul: resultData.title,
                 artis: resultData.artist.name,
