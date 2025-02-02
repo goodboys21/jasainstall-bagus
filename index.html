@@ -46,7 +46,15 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
-    margin: 0 auto 20px auto; /* Tambahin margin bawah 20px */
+    margin: 0 auto 20px auto;
+}
+
+/* Pastikan ukuran sama di mobile */
+@media (max-width: 768px) {
+    .box {
+        max-width: 90%; /* Supaya tetap proporsional di layar kecil */
+        margin: 0 auto 15px auto; /* Jeda antar fitur tetap ada */
+    }
 }
 
     /* Animasi kursor berkedip */
