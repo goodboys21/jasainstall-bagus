@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
             z-index: -1;
         }
 
-        /* Overlay */
+        /* Overlay untuk meningkatkan keterbacaan */
         .overlay {
             position: fixed;
             top: 0;
@@ -28,7 +28,7 @@
             z-index: 0;
         }
 
-        /* Header */
+        /* Kotak header warna biru pudar */
         .header {
             background: rgba(52, 152, 219, 0.8);
             backdrop-filter: blur(10px);
@@ -46,7 +46,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Animasi ketikan */
+        /* Animasi kursor berkedip */
         .typing::after {
             content: '|';
             animation: blink 0.7s infinite;
@@ -55,23 +55,9 @@
         @keyframes blink {
             50% { opacity: 0; }
         }
-
-        /* Tombol tersembunyi untuk kontrol musik */
-        #hidden-audio-btn {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body class="bg-blue-50 text-gray-800">
-
     <!-- Background Video -->
     <video id="bg-video" autoplay muted loop>
         <source src="https://files.catbox.moe/8wqvbd.mp4" type="video/mp4">
@@ -99,7 +85,7 @@
         <!-- API Endpoints Section -->
         <div class="box mt-8">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-semibold text-blue-700">Orkut API</h2>
+                <h2 class="text-2xl font-semibold text-blue-700">Orkut Api</h2>
                 <span class="text-green-600 text-sm font-semibold">3 endpoints</span>
             </div>
             <ul>
@@ -136,12 +122,12 @@
                     Donasi
                 </a>
                 <div class="flex space-x-4 w-full justify-center">
-                    <a href="https://wa.me/6281936845010" target="_blank" 
+                    <a href="https://wa.me/6281936845010?text=hallo+min+gw+mau+tanya+soal+api" target="_blank" 
                         class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
                         Support
                     </a>
                     <a href="https://whatsapp.com/channel/0029Vaip80aLI8YYgOo37h1N" target="_blank" 
-                        class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
+                        class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
                         Information
                     </a>
                 </div>
@@ -149,15 +135,7 @@
         </div>
     </main>
 
-    <!-- Audio -->
-    <audio id="bg-music" loop>
-        <source src="https://files.catbox.moe/szy18t.m4a" type="audio/mpeg">
-    </audio>
-
-    <!-- Tombol Tersembunyi untuk Kontrol Musik -->
-    <button id="hidden-audio-btn"></button>
-
-    <!--     <!-- JavaScript untuk efek ketik -->
+    <!-- JavaScript untuk efek ketik -->
     <script>
         // Efek ketik pada "Welcome To Bagus Rest Api"
         const text = "Welcome To Bagus Rest Api";
@@ -180,7 +158,7 @@
 
         typeEffect();
 
-        // Efek ketik dan hapus pada "Bagus Xyz"
+        // Efek ketik dan hapus pada "Bagus Api"
         const headerText = "Bagus Api";
         const typingHeader = document.getElementById("typing-header");
         let headerIndex = 0;
@@ -203,16 +181,5 @@
 
         typeHeader();
     </script>
-
-        // Musik otomatis
-        document.addEventListener("DOMContentLoaded", () => {
-            const audio = document.getElementById("bg-music");
-            const button = document.getElementById("hidden-audio-btn");
-
-            audio.play().catch(() => console.log("Autoplay dicegah, menunggu interaksi."));
-            button.addEventListener("click", () => audio.paused ? audio.play() : audio.pause());
-        });
-    </script>
-
 </body>
-                        </html>di 
+</html>
