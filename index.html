@@ -3,68 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bagus API</title>
+    <title>bagus-api</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Background Video */
-        #bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
+    /* Background Video */
+    #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
 
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 0;
-        }
+    /* Overlay untuk meningkatkan keterbacaan */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 0;
+    }
 
-        /* Kotak header warna biru pudar */
-        .header {
-            background: rgba(52, 152, 219, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Kotak header warna biru pudar */
+    .header {
+        background: rgba(52, 152, 219, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Kotak putih transparan dengan ukuran seragam */
-        .box {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px; /* Semua kotak memiliki lebar yang sama */
-            margin: 0 auto 20px auto;
-        }
+    /* Kotak putih transparan */
+.box {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
 
-        /* Animasi kursor berkedip */
-        .typing::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
+/* Pastikan ukuran sama di mobile */
+@media (max-width: 768px) {
+    .box {
+        max-width: 90%; /* Supaya tetap proporsional di layar kecil */
+        margin: 0 auto 15px auto; /* Jeda antar fitur tetap ada */
+    }
+}
 
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-    </style>
+    /* Animasi kursor berkedip */
+    .typing::after {
+        content: '|';
+        animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+</style>
 </head>
 <body class="bg-blue-50 text-gray-800">
+    <!-- Background Video -->
     <video id="bg-video" autoplay muted loop>
         <source src="https://files.catbox.moe/8wqvbd.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <!-- Overlay -->
     <div class="overlay"></div>
 
     <!-- Header -->
@@ -77,16 +88,18 @@
 
     <!-- Main Content -->
     <main class="container mx-auto mt-6 p-4">
+        <!-- Intro Section -->
         <div class="box text-center">
             <span class="typing" id="typing-text"></span>
         </div>
 
-        <!-- Section API -->
-        <div class="box">
-            <h2 class="text-2xl font-semibold text-blue-700">Downloader</h2>
-            <span class="text-green-600 text-sm font-semibold">6 endpoints</span>
-        </div>
-        <ul>
+        <!-- API Downloader Endpoints Section -->
+        <div class="box mt-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-blue-700">Downloader</h2>
+                <span class="text-green-600 text-sm font-semibold">6 endpoints</span>
+            </div>
+            <ul>
                 <li class="flex justify-between items-center py-3 border-b">
                     <span class="text-blue-600 font-semibold">GET</span>
                     <span class="text-gray-700">Tiktok</span>
@@ -133,13 +146,14 @@
                 </li>
             </ul>
         </div>
-    </main>
 
-        <div class="box">
-            <h2 class="text-2xl font-semibold text-blue-700">Stalker</h2>
-            <span class="text-green-600 text-sm font-semibold">4 endpoints</span>
-        </div>
-        <ul>
+                <!-- API stalker Endpoints Section -->
+                <div class="box mt-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-blue-700">Stalker</h2>
+                <span class="text-green-600 text-sm font-semibold">4 endpoints</span>
+            </div>
+            <ul>
                 <li class="flex justify-between items-center py-3 border-b">
                     <span class="text-blue-600 font-semibold">GET</span>
                     <span class="text-gray-700">Tiktok Stalk</span>
@@ -163,12 +177,13 @@
             </ul>
         </div>
     </main>
-
-        <div class="box">
-            <h2 class="text-2xl font-semibold text-blue-700">Sticker</h2>
-            <span class="text-green-600 text-sm font-semibold">4 endpoints</span>
-        </div>
-        <ul>
+<!-- Sticker Endpoints Section -->
+<div class="box mt-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold text-blue-700">Sticker</h2>
+        <span class="text-green-600 text-sm font-semibold">4 endpoints</span>
+    </div>
+    <ul>
         <li class="flex justify-between items-center py-3 border-b">
             <span class="text-blue-600 font-semibold">GET</span>
             <span class="text-gray-700">Brat Img</span>
@@ -192,12 +207,13 @@
     </ul>
 </div>
 </main>
-
-        <div class="box">
-            <h2 class="text-2xl font-semibold text-blue-700">Order Kuota</h2>
-            <span class="text-green-600 text-sm font-semibold">3 endpoints</span>
-        </div>
-        <ul>
+    <!-- API Orkut Endpoints Section -->
+<div class="box mt-8">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold text-blue-700">Order Kuota</h2>
+        <span class="text-green-600 text-sm font-semibold">3 endpoints</span>
+    </div>
+    <ul>
         <li class="flex justify-between items-center py-3 border-b">
             <span class="text-blue-600 font-semibold">GET</span>
             <span class="text-gray-700">Create Payment</span>
@@ -216,22 +232,34 @@
     </ul>
 </div>
 </main>
+    
 
-        <!-- Dukungan & Hubungi -->
-        <div class="box text-center">
-            <h2 class="text-xl font-semibold mb-4">Dukung & Hubungi Kami</h2>
-            <div class="flex flex-col space-y-4 items-center">
-                <a href="https://saweria.co/bagusbahril" target="_blank" class="w-3/4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">Donasi</a>
-                <div class="flex space-x-4 w-full justify-center">
-                    <a href="https://wa.me/6281936845010?text=hallo+min+gw+mau+tanya+soal+api" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">Support</a>
-                    <a href="https://whatsapp.com/channel/0029Vaip80aLI8YYgOo37h1N" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">Information</a>
-                </div>
-            </div>
+<!-- Footer Buttons -->
+<div class="box mt-8 text-center">
+    <h2 class="text-xl font-semibold mb-4">Dukung & Hubungi Kami</h2>
+    <div class="flex flex-col space-y-4 items-center">
+        <a href="https://saweria.co/bagusbahril" target="_blank" 
+            class="w-3/4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
+            Donasi
+        </a>
+        <div class="flex space-x-4 w-full justify-center">
+            <a href="https://wa.me/6281936845010?text=hallo+min+gw+mau+tanya+soal+api" target="_blank" 
+                class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
+                Support
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vaip80aLI8YYgOo37h1N" target="_blank" 
+                class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg text-center shadow-md transition">
+                Information
+            </a>
         </div>
-    </main>
+    </div>
+</div>
+</main>
+                
 
     <!-- JavaScript untuk efek ketik -->
     <script>
+        // Efek ketik pada "Welcome To Bagus Rest Api"
         const text = "Welcome To Bagus Rest Api";
         const typingElement = document.getElementById("typing-text");
         let index = 0;
@@ -252,6 +280,7 @@
 
         typeEffect();
 
+        // Efek ketik dan hapus pada "Bagus Api"
         const headerText = "Bagus Api";
         const typingHeader = document.getElementById("typing-header");
         let headerIndex = 0;
