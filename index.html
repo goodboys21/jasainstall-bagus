@@ -38,15 +38,26 @@
     }
 
     /* Kotak putih transparan */
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 .box {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;  /* ✅ Ini yang gue tambahin biar ukurannya seragam */
-    margin: 0 auto 20px auto;
+    width: 300px; /* ✅ Ini buat maksa semua box punya lebar yang sama */
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* Pastikan ukuran sama di mobile */
