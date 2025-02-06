@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bagus API</title>
+    <title>bagus-api</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* CSS Popup */
@@ -82,13 +82,62 @@
             display: none;
         }
 
+            /* Background Video */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Overlay untuk meningkatkan keterbacaan */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+
+        /* Kotak header warna biru pudar */
+        .header {
+            background: rgba(52, 152, 219, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Kotak putih transparan */
+        .box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animasi kursor berkedip */
+        .typing::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
     </style>
 </head>
-<body>
-
+<body class="bg-blue-50 text-gray-800">
     <!-- Background Video -->
-    <video id="bg-video" autoplay loop muted>
-        <source src="your-video.mp4" type="video/mp4">
+    <video id="bg-video" autoplay muted loop>
+        <source src="https://files.catbox.moe/8wqvbd.mp4" type="video/mp4">
+        Your browser does not support the video tag.
     </video>
 
     <!-- Overlay -->
@@ -99,8 +148,10 @@
         <div id="popup-box">
             <!-- Close Button -->
             <button id="close-btn">&times;</button>
-            <h2>Selamat Datang di Bagus API!</h2>
-            <p>Bagus Api Adalah Website Penyedia Rest Api Untuk Fitur Bot Kamu, Bagus Api Di Produksi Oleh Bagus Bahril, Rest Api Ini Akan Selamanya Gratis!!</p>
+            <h2>Hallo :D</h2>
+            <p>Selamat Datang Di Bagus Api :v
+                
+                Bagus Api adalah website penyedia rest api gratis untuk mendukung fitur bot kamu. Bagus Api hadir dengan macam macam fitur yang langka dan menarik!,yang lebih keren lagi semua fitur nya gratis dan tanpa limit!!</p>
             
             <!-- Action Buttons -->
             <a href="https://saweria.co/bagusbahril" class="button donasi" target="_blank">Donasi</a>
