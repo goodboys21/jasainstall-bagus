@@ -105,8 +105,16 @@
     </style>
 </head>
 <body class="bg-blue-50 text-gray-800">
+      <!-- Background Video -->
+      <video id="bg-video" autoplay loop muted>
+          <source src="path-to-your-video.mp4" type="video/mp4">
+      </video>
+
+      <!-- Overlay -->
+      <div class="overlay"></div>
+
       <!-- Popup -->
-    <div id="popup-overlay">
+    <div id="popup-overlay" class="hidden">
         <div id="popup-box">
             <h2><b>Selamat Datang di Bagus API!</b></h2>
             <p>Gunakan API ini dengan bijak. Jangan lupa baca dokumentasi!</p>
@@ -116,10 +124,16 @@
 
     <script>
         // Fungsi untuk menutup popup
-document.getElementById("close-btn").addEventListener("click", function() {
-    console.log("Tombol ditutup ditekan!");  // Pastikan event listener aktif
-    document.getElementById("popup-overlay").classList.add("hidden");
-});
+        document.getElementById("close-btn").addEventListener("click", function() {
+            console.log("Tombol ditutup ditekan!");  // Memastikan event listener aktif
+            document.getElementById("popup-overlay").classList.add("hidden");
+        });
+
+        // Tampilkan popup saat pertama kali halaman dimuat
+        window.onload = function() {
+            console.log("Halaman dimuat, popup muncul!");  // Verifikasi halaman dimuat
+            document.getElementById("popup-overlay").classList.remove("hidden");
+        };
     </script>
     <!-- Background Video -->
     <video id="bg-video" autoplay muted loop>
