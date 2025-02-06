@@ -116,14 +116,10 @@
 
     <script>
         // Fungsi untuk menutup popup
-        document.getElementById("close-btn").addEventListener("click", function() {
-            document.getElementById("popup-overlay").classList.add("hidden");
-        });
-
-        // Tampilkan popup saat pertama kali halaman dimuat
-        window.onload = function() {
-            document.getElementById("popup-overlay").classList.remove("hidden");
-        };
+document.getElementById("close-btn").addEventListener("click", function() {
+    console.log("Tombol ditutup ditekan!");  // Pastikan event listener aktif
+    document.getElementById("popup-overlay").classList.add("hidden");
+});
     </script>
     <!-- Background Video -->
     <video id="bg-video" autoplay muted loop>
