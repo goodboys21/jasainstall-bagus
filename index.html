@@ -408,51 +408,62 @@
         </div>
     </main>
 
-    <!-- JavaScript untuk efek ketik -->
-    <script>
-        // Efek ketik pada "Welcome To Bagus Rest Api"
-        const text = "Welcome To Bagus Rest Api";
-        const typingElement = document.getElementById("typing-text");
-        let index = 0;
-
-        function typeEffect() {
-            if (index < text.length) {
-                typingElement.innerHTML = text.substring(0, index + 1);
-                index++;
-                setTimeout(typeEffect, 100);
-            } else {
-                setTimeout(() => {
-                    index = 0;
-                    typingElement.innerHTML = "";
-                    typeEffect();
-                }, 2000);
-            }
+     <script>
+        // Fungsi untuk menutup popup
+        function closePopup() {
+            document.getElementById("popup-box").classList.add("hidden");
+            document.getElementById("popup-overlay").classList.add("hidden");
         }
 
-        typeEffect();
+        // Menampilkan popup saat pertama kali halaman dimuat
+        window.onload = function() {
+            document.getElementById("popup-box").classList.remove("hidden");
+            document.getElementById("popup-overlay").classList.remove("hidden");
 
-        // Efek ketik dan hapus pada "Bagus Api"
-        const headerText = "Bagus Api";
-        const typingHeader = document.getElementById("typing-header");
-        let headerIndex = 0;
-        let isDeleting = false;
+            // Efek ketik pada "Welcome To Bagus Rest Api"
+            const text = "Welcome To Bagus Rest Api";
+            const typingElement = document.getElementById("typing-text");
+            let index = 0;
 
-        function typeHeader() {
-            if (!isDeleting && headerIndex < headerText.length) {
-                typingHeader.innerHTML = headerText.substring(0, headerIndex + 1);
-                headerIndex++;
-                setTimeout(typeHeader, 150);
-            } else if (isDeleting && headerIndex > 0) {
-                typingHeader.innerHTML = headerText.substring(0, headerIndex - 1);
-                headerIndex--;
-                setTimeout(typeHeader, 100);
-            } else {
-                isDeleting = !isDeleting;
-                setTimeout(typeHeader, 1500);
+            function typeEffect() {
+                if (index < text.length) {
+                    typingElement.innerHTML = text.substring(0, index + 1);
+                    index++;
+                    setTimeout(typeEffect, 100);
+                } else {
+                    setTimeout(() => {
+                        index = 0;
+                        typingElement.innerHTML = "";
+                        typeEffect();
+                    }, 2000);
+                }
             }
-        }
 
-        typeHeader();
+            typeEffect();
+
+            // Efek ketik dan hapus pada "Bagus Api"
+            const headerText = "Bagus Api";
+            const typingHeader = document.getElementById("typing-header");
+            let headerIndex = 0;
+            let isDeleting = false;
+
+            function typeHeader() {
+                if (!isDeleting && headerIndex < headerText.length) {
+                    typingHeader.innerHTML = headerText.substring(0, headerIndex + 1);
+                    headerIndex++;
+                    setTimeout(typeHeader, 150);
+                } else if (isDeleting && headerIndex > 0) {
+                    typingHeader.innerHTML = headerText.substring(0, headerIndex - 1);
+                    headerIndex--;
+                    setTimeout(typeHeader, 100);
+                } else {
+                    isDeleting = !isDeleting;
+                    setTimeout(typeHeader, 1500);
+                }
+            }
+
+            typeHeader();
+        };
     </script>
 </body>
 </html>
