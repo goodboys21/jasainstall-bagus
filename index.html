@@ -1,88 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bagus-api</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* CSS Popup */
-        #popup-overlay {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(200, 200, 200, 0.9);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        #popup-overlay.show {
-            opacity: 1;
-        }
-
-        #popup-box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            transform: translateY(-50px);
-            transition: transform 0.5s ease-in-out;
-            position: relative;
-        }
-
-        #popup-box.show {
-            transform: translateY(0);
-        }
-
-        #popup-box h2 {
-            color: #007bff;
-        }
-
-        /* Close Button */
-        #close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            color: #333;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        /* Button styles */
-        .button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .donasi {
-            background-color: #f1c40f; /* Kuning */
-        }
-
-        .support {
-            background-color: #2ecc71; /* Hijau */
-        }
-
-        /* Sembunyikan popup awalnya */
-        .hidden {
-            display: none;
-        }
-
-            /* Background Video */
+        /* Background Video */
         #bg-video {
             position: fixed;
             top: 0;
@@ -143,20 +67,7 @@
     <!-- Overlay -->
     <div class="overlay"></div>
 
-    <!-- Popup -->
-    <div id="popup-overlay" class="hidden">
-        <div id="popup-box">
-            <!-- Close Button -->
-            <button id="close-btn">&times;</button>
-            <h2>Hallo :D</h2>
-            <p>selamat datang di Bagus Api website penyedia rest api gratis yang di rancang khusus untuk mendukung fitur pada project bot buatan kamu</p>
-            <!-- Action Buttons -->
-            <a href="https://saweria.co/bagusbahril" class="button donasi" target="_blank">Donasi</a>
-            <a href="https://wa.me/6281936845010" class="button support" target="_blank">Support</a>
-        </div>
-    </div> 
-
-        <!-- Header -->
+    <!-- Header -->
     <header class="header text-white shadow p-4 flex justify-between items-center">
         <h1 class="text-3xl font-bold typing-header" id="typing-header"></h1>
         <a href="https://wa.me/6281936845010" target="_blank">
@@ -170,12 +81,6 @@
         <div class="box text-center">
             <span class="typing" id="typing-text"></span>
         </div>
-
-
-            
-
-
-        
 
         <!-- API Downloader Endpoints Section -->
         <div class="box mt-8">
@@ -466,27 +371,7 @@
     </main>
 
     <!-- JavaScript untuk efek ketik -->
-<script>
-    window.onload = function () {
-        // Popup elements
-        const popupOverlay = document.getElementById('popup-overlay');
-        const popupBox = document.getElementById('popup-box');
-        const closeBtn = document.getElementById('close-btn');
-        
-        // Menampilkan popup setelah halaman dimuat
-        setTimeout(() => {
-            popupOverlay.classList.remove('hidden');
-            popupOverlay.classList.add('show');
-            popupBox.classList.add('show');
-        }, 500); // Popup muncul setelah 0.5 detik
-
-        // Menutup popup saat tombol tutup ditekan
-        closeBtn.addEventListener("click", function () {
-            popupBox.classList.remove('show');
-            popupOverlay.classList.remove('show');
-            popupOverlay.classList.add('hidden');
-        });
-
+    <script>
         // Efek ketik pada "Welcome To Bagus Rest Api"
         const text = "Welcome To Bagus Rest Api";
         const typingElement = document.getElementById("typing-text");
@@ -530,7 +415,6 @@
         }
 
         typeHeader();
-    };
-</script>
+    </script>
 </body>
 </html>
