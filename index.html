@@ -29,24 +29,59 @@
             width: 80%;
             max-width: 400px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         #popup-box h2 {
             color: #007bff;
         }
 
+        /* Tombol silang di pojok kanan atas */
         #close-btn {
-            background: #007bff;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            color: #333;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #close-btn:hover {
+            color: #ff0000;
+        }
+
+        /* Button donasi (kuning) */
+        .donate-btn {
+            background-color: #ffc107;
             color: white;
             border: none;
             padding: 10px 20px;
             margin-top: 15px;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
         }
 
-        #close-btn:hover {
-            background: #0056b3;
+        .donate-btn:hover {
+            background-color: #e0a800;
+        }
+
+        /* Button support (hijau) */
+        .support-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .support-btn:hover {
+            background-color: #218838;
         }
 
         /* Sembunyikan popup awalnya */
@@ -74,34 +109,6 @@
             background: rgba(0, 0, 0, 0.3);
             z-index: 0;
         }
-
-        /* Kotak header warna biru pudar */
-        .header {
-            background: rgba(52, 152, 219, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Kotak putih transparan */
-        .box {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Animasi kursor berkedip */
-        .typing::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
     </style>
 </head>
 <body class="bg-blue-50 text-gray-800">
@@ -116,16 +123,26 @@
       <!-- Popup -->
     <div id="popup-overlay" class="hidden">
         <div id="popup-box">
+            <button id="close-btn">&times;</button> <!-- Tombol Tutup di pojok kanan atas -->
             <h2><b>Selamat Datang di Bagus API!</b></h2>
             <p>Gunakan API ini dengan bijak. Jangan lupa baca dokumentasi!</p>
-            <button id="close-btn">Tutup</button>
+
+            <!-- Button Donasi -->
+            <a href="https://saweria.co/yourusername" target="_blank">
+                <button class="donate-btn">Donasi</button>
+            </a>
+
+            <!-- Button Support -->
+            <a href="https://wa.me/1234567890" target="_blank">
+                <button class="support-btn">Support via WhatsApp</button>
+            </a>
         </div>
     </div>
 
     <script>
         // Fungsi untuk menutup popup
         document.getElementById("close-btn").addEventListener("click", function() {
-            console.log("Tombol ditutup ditekan!");  // Memastikan event listener aktif
+            console.log("Tombol tutup ditekan!");  // Memastikan event listener aktif
             document.getElementById("popup-overlay").classList.add("hidden");
         });
 
