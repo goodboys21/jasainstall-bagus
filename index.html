@@ -8,17 +8,23 @@
     <style>
         /* CSS Popup */
         #popup-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(200, 200, 200, 0.9); /* Warna abu-abu agak putih */
-    z-index: 1000;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200, 200, 200, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #popup-overlay.show {
+            opacity: 1;
+        }
 
         #popup-box {
             background: white;
@@ -28,6 +34,12 @@
             width: 80%;
             max-width: 400px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        #popup-box.show {
+            transform: translateY(0);
         }
 
         #popup-box h2 {
@@ -53,6 +65,30 @@
             display: none;
         }
 
+        /* Animasi ketik */
+        .typing {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            animation: typing 3s steps(30) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blinkCaret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
         /* Background Video */
         #bg-video {
             position: fixed;
@@ -75,7 +111,7 @@
             z-index: 0;
         }
 
-           /* Kotak header warna biru pudar */
+        /* Kotak header warna biru pudar */
         .header {
             background: rgba(52, 152, 219, 0.8);
             backdrop-filter: blur(10px);
@@ -92,33 +128,27 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-                /* Animasi kursor berkedip */
-        .typing::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
     </style>
 </head>
-<body class="bg-blue-50 text-gray-800">
+<body>
+
     <!-- Background Video -->
     <video id="bg-video" autoplay loop muted>
-        <source src="https://files.catbox.moe/8wqvbd.mp4" type="video/mp4">
+        <source src="your-video.mp4" type="video/mp4">
     </video>
+
     <!-- Overlay -->
     <div class="overlay"></div>
 
     <!-- Popup -->
-    <div id="popup-overlay">
+    <div id="popup-overlay" class="hidden">
         <div id="popup-box">
-            <h2><b>Selamat Datang di Bagus API!</b></h2>
-            <p>Gunakan API ini dengan bijak. Jangan lupa baca dokumentasi!</p>
+            <h2 class="typing">Selamat Datang di Bagus API!</h2>
+            <p>Bagus Api Adalah Website Penyedia Rest Api Untuk Fitur Bot Kamu, Bagus Api Di Produksi Oleh Bagus Bahril, Rest Api Ini Akan Selamanya Gratis!!</p>
             <button id="close-btn">Tutup</button>
         </div>
     </div>
+        
 
         <!-- Header -->
     <header class="header text-white shadow p-4 flex justify-between items-center">
@@ -430,39 +460,50 @@
     </main>
 
     <!-- JavaScript untuk efek ketik -->
-    <script>
-        window.onload = function () {
-            const popup = document.getElementById("popup-overlay");
-            const closeBtn = document.getElementById("close-btn");
+<script>
+    window.onload = function () {
+        // Popup
+        const popupOverlay = document.getElementById('popup-overlay');
+        const popupBox = document.getElementById('popup-box');
+        const closeBtn = document.getElementById('close-btn');
+        
+        // Efek Ketik
+        const typingText = "Selamat Datang di Bagus API!";
+        const typingElement = document.getElementById("typing-text");
+        let index = 0;
 
-            console.log("Halaman dimuat, popup muncul!");
-            popup.style.display = "flex"; // Pastikan popup muncul saat halaman dimuat
+        // Menampilkan popup setelah halaman dimuat
+        setTimeout(() => {
+            popupOverlay.classList.remove('hidden');
+            popupOverlay.classList.add('show');
+            popupBox.classList.add('show');
+        }, 500); // Popup muncul setelah 0.5 detik
 
-            closeBtn.addEventListener("click", function () {
-                console.log("Tombol tutup ditekan!");
-                popup.style.display = "none"; // Sembunyikan popup saat tombol diklik
-            });
+        // Menutup popup saat tombol tutup ditekan
+        closeBtn.addEventListener("click", function () {
+            popupBox.classList.remove('show');
+            popupOverlay.classList.remove('show');
+            popupOverlay.classList.add('hidden');
+        });
 
-            // Efek ketik
-            const text = "Welcome To Bagus Rest Api";
-            const typingElement = document.getElementById("typing-text");
-            let index = 0;
-
-            function typeEffect() {
-                if (index < text.length) {
-                    typingElement.innerHTML = text.substring(0, index + 1);
-                    index++;
-                    setTimeout(typeEffect, 100);
-                } else {
-                    setTimeout(() => {
-                        index = 0;
-                        typingElement.innerHTML = "";
-                        typeEffect();
-                    }, 2000);
-                }
+        // Fungsi untuk efek ketik
+        function typeEffect() {
+            if (index < typingText.length) {
+                typingElement.innerHTML = typingText.substring(0, index + 1);
+                index++;
+                setTimeout(typeEffect, 100);
+            } else {
+                setTimeout(() => {
+                    index = 0;
+                    typingElement.innerHTML = "";
+                    typeEffect();
+                }, 2000);
             }
-            typeEffect();
-        };
-    </script>
+        }
+        
+        // Mulai efek ketik
+        typeEffect();
+    };
+</script>
 </body>
 </html>
